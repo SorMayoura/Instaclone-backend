@@ -14,4 +14,15 @@ const getUser = async (token) => {
     else return loggedUser;
 }
 
-export default getUser;
+const protectResolver = (ourResolver) => (root, args, content, info) =>{
+    if (!content.loggedUser) {
+        console.log("error")
+        return {
+            editOk: false, message: "Please Login to Perform This Action",
+        }
+    }
+
+    return ourResolver(root, args, content, info);
+}
+
+export { getUser, protectResolver };
