@@ -1,0 +1,93 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  LastName  String?
+  password  String
+  email     String   @unique
+  userName  String   @unique
+  avarta    String?
+  bio       String?
+  photos    Photo[]
+  likes     Like[]
+  comments Comment[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  following User[]   @relation("followRelation")
+  follower  User[]   @relation("followRelation")
+  rooms Room[]
+  messages Message[]
+}
+
+model Photo {
+  id        Int       @id @default(autoincrement())
+  file      String
+  caption   String?
+  hashtags  Hashtag[]
+  user_ref  User      @relation(fields: [user_Id], references: [id])
+  user_Id   Int
+  likes     Like[]
+  comments Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Hashtag {
+  id        Int      @id @default(autoincrement())
+  hashtag   String   @unique
+  photos    Photo[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  photo     Photo    @relation(fields: [photo_Id], references: [id])
+  photo_Id  Int      
+  user      User     @relation(fields: [user_Id], references: [id])
+  user_Id   Int      
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([user_Id, photo_Id])
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id])
+  photo Photo @relation(fields: [photoId], references: [id])
+  payload String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int
+  photoId Int
+}
+
+model Room {
+  id Int @id @default(autoincrement())
+  users User[]
+  messages Message[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id Int @id @default(autoincrement())
+  payload String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  room Room @relation(fields: [roomId], references: [id])
+  roomId Int
+  read Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

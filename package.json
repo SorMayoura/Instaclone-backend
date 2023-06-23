@@ -1,0 +1,49 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "nodemon --exec babel-node server",
+    "migrate": "npx prisma migrate dev --preview-feature"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SorMayoura/Instaclone-backend.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/SorMayoura/Instaclone-backend.git"
+  },
+  "homepage": "https://github.com/SorMayoura/Instaclone-backend.git#readme",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.7.4",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@graphql-tools/merge": "^9.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "@prisma/client": "^4.14.1",
+    "apollo-server": "^3.12.0",
+    "apollo-server-express": "^3.12.0",
+    "aws-sdk": "^2.1402.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-tools": "^9.0.0",
+    "graphql-upload": "^13.0.0",
+    "graphql-ws": "^5.14.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "react-router-dom": "^5.3.4",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.21.5",
+    "@types/graphql-upload": "^8.0.11",
+    "nodemon": "^2.0.22",
+    "prisma": "^4.15.0"
+  }
+}
