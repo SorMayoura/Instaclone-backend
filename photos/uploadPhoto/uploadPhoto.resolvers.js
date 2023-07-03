@@ -11,7 +11,6 @@ const resolverFunction = async (_, { file, caption }, { logginUser }) => {
 
             const getHashtags = caption.match(/#[\w-]+/g);
 
-            console.log(getHashtags);
             if (getHashtags) {
                 hashtagObj = getHashtags.map((item) => ({
                     where: { hashtag: item },
@@ -20,8 +19,6 @@ const resolverFunction = async (_, { file, caption }, { logginUser }) => {
             }
 
         };
-
-        console.log(hashtagObj);
 
         const fileURL = await uploadToS3(file, logginUser.id, "uploads");
 

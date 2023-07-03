@@ -6,7 +6,6 @@ export default {
             try {
                 const returnResult = await client.Hashtag.findUnique({where:{hashtag}});
 
-                console.log(returnResult);
                 return {
                     status: true,
                     message: "success",

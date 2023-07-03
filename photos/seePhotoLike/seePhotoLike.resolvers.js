@@ -17,8 +17,7 @@ export default {
                 if (foundPhoto.length > 0) {
                     returnResult = foundPhoto.map((item) => (item.user));
                 }
-
-                console.log(returnResult);
+                
                 return {
                     status: true,
                     message: 'success',

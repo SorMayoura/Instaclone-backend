@@ -71,8 +71,7 @@ export default {
                         }    
                     }
                 });
-
-                console.log(returnResult);
+                
                 pubsub.publish(NEW_MESSAGE, {roomUpdates: {...returnResult}})
                 return {
                     status: true,

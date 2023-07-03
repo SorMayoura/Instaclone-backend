@@ -6,7 +6,6 @@ export default {
             try {
                 const returnResult = await client.Photo.findUnique({where:{id}});
 
-                console.log(returnResult);
                 return {
                     status: true,
                     message: "success",

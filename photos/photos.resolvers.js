@@ -15,12 +15,36 @@ export default {
             })
         },
         likes: ({ id }) => client.like.count({ where: { photo_Id: id } }),
-        comments: ({ id }) => client.comment.count({ where: { photoId: id } }),
+        commentNumber: ({ id }) => client.comment.count({ where: { photoId: id } }),
+        comments: ({id}) => client.photo.findUnique({where:{id}}).comments({include:{user:true}}),
         isMine: ({user_Id}, _, {logginUser}) => {
             if (!logginUser) {
                 return false
             } else {
                 return user_Id == logginUser.id;
+            }
+        },
+        isLiked: async ({id}, _, {logginUser}) => {
+            if (!logginUser) {
+                return false
+            } else {
+                const ok = await client.like.findUnique({
+                    where: {
+                        user_Id_photo_Id: {
+                            user_Id:logginUser.id,
+                            photo_Id: id
+                        }
+                    },
+                    select: {
+                        id: true
+                    }
+                });
+
+                if (ok) {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
     },

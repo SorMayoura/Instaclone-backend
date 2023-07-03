@@ -11,6 +11,5 @@ export default gql`
         userId: Int
         photoId: Int
         isMine: Boolean
-
     }
 `
