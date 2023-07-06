@@ -12,7 +12,7 @@ export default gql`
         follower: [User]
         avarta: String
         bio: String
-        # photos: [Photo]
+        photos: [Photo]
         totalFollowing: Int
         totalFollower: Int
         isFollowing: Boolean
