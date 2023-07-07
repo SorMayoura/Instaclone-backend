@@ -4,10 +4,15 @@ export default gql`
     type seeProfileResult{
         status: Boolean
         message: String
+        data: User
+    }
+    type allProfileResult {
+        status: Boolean
+        message: String
         data: [User]
     }
     type Query {
         seeProfile(userName: String!): seeProfileResult
-        allProfile: seeProfileResult
+        allProfile: allProfileResult
     }
 `;

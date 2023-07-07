@@ -4,7 +4,7 @@ export default {
     Query: {
         seeProfile: async (_, {userName}) => {
             try {
-                const returnResult = await client.User.findMany({
+                const returnResult = await client.User.findUnique({
                     where: {userName},
                     include: {
                         following: true,
