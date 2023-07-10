@@ -8,7 +8,8 @@ export default {
                     where: {userName},
                     include: {
                         following: true,
-                        follower: true
+                        follower: true,
+                        photos:true
                     }
                 });
 
