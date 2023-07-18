@@ -7,6 +7,6 @@ export default gql`
         data: [Photo]
     }
     type Query {
-        seeFeed: seeFeedResult!
+        seeFeed(offset:Int!): seeFeedResult!
     }
 `

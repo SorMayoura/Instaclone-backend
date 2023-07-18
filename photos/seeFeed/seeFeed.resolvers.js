@@ -3,9 +3,11 @@ import { protectResolver } from '../../users/users.utils';
 
 export default {
     Query: {
-        seeFeed: protectResolver(async (_, __, {logginUser}) => {
+        seeFeed: protectResolver(async (_, {offset}, {logginUser}) => {
             try {
                 const returnResult = await client.photo.findMany({
+                    take:2,
+                    skip: offset,
                     where:{
                         OR: [
                             {user_Id: logginUser.id},
@@ -22,6 +24,8 @@ export default {
                         createdAt: "desc"
                     }
                 });
+
+                console.log(returnResult);
                 return {
                     status: true,
                     message: 'success',
