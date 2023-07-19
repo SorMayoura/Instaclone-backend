@@ -25,17 +25,18 @@ export default {
                     }
                 });
 
-                console.log(returnResult);
-                return {
-                    status: true,
-                    message: 'success',
-                    data: returnResult
-                }
+                return returnResult;
+                // return {
+                //     status: true,
+                //     message: 'success',
+                //     data: returnResult
+                // }
             } catch (error) {
-                return {
-                    status: false,
-                    message: error.message
-                }
+                // return {
+                //     status: false,
+                //     message: error.message
+                // }
+                console.log(error.message);
             } finally {
                 client.$disconnect();
             }
